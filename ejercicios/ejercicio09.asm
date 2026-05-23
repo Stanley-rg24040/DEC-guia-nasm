@@ -11,7 +11,7 @@ section .text
 
 _start:
     mov rsi, mensaje
-    mov r8, 0
+    mov r8, 0 ;contador para decrementar
 loop:
     ;obtener el primer caracter
     mov al, [rsi]
@@ -34,20 +34,20 @@ loop:
 
 invertir:
         ;obtener el ultimo caracter
-        cmp r8, 0
-        je fin
-        pop rax
+        cmp r8, 0 ; validar si contador es 0
+        je fin ;finalizar el programa
+        pop rax ;agregar el siguiente caracter a la pila
         mov [caracter], al ;guardamos temporalmente el caracter en memoria
                            ;porque write necesita una direccion de memoria
-                           
+
         ;llamar a la funcion write e imprimir en la terminal
-        mov rax, 1
-        mov rdi, 1
-        lea rsi, [caracter]
-        mov rdx, 1
-        dec r8
+        mov rax, 1 ;llamada a wirte
+        mov rdi, 1 ;imprimir en la terminal
+        lea rsi, [caracter] ;leer el caracter actual
+        mov rdx, 1 ;cantidad de bytes a imprimir por ciclo
+        dec r8 ;decrementar el contador
         syscall
-        jmp invertir
+        jmp invertir ;bucle
 
 
 
