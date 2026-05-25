@@ -12,7 +12,8 @@ section .text
 _start:
     mov rsi, mensaje
     mov r8, 0 ;contador para decrementar
-loop:
+
+recorrer:
     ;obtener el primer caracter
     mov al, [rsi]
 
@@ -29,8 +30,9 @@ loop:
     ;avanzar hacia la siguiente ubicacion
     inc rsi
     inc r8
+
     ;repetir proceso
-    jmp loop
+    jmp recorrer
 
 invertir:
         ;obtener el ultimo caracter
@@ -48,10 +50,6 @@ invertir:
         dec r8 ;decrementar el contador
         syscall
         jmp invertir ;bucle
-
-
-
-
 
 fin:
     mov rax, 60
